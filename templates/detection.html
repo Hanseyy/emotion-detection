@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Previous Detections</title>
+    <style>
+        body { background: #181b2b; color: #ffe037; font-family: 'Segoe UI', Arial, sans-serif; }
+        table { margin:auto; background:#232735; border-radius:12px; }
+        th, td { padding:10px; color:#FFD700; font-size:1em; border-bottom:1px solid #393737; }
+        th { color:#76faf6; background:#232735; }
+        tr:hover { background:#2a3350;}
+        a { color:#FFD700; text-decoration:underline;}
+    </style>
+</head>
+<body>
+<h2 style="text-align:center;">Previous Detections (Last 100)</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Timestamp</th>
+        <th>Face #</th>
+        <th>Emotion</th>
+        <th>Confidence</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>
+            {% if row|length > 4 %}
+                {{ '%0.2f'|format(row[4]*100) }}%
+            {% else %}
+                -
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<div style="text-align:center;">
+    <a href="/">Back to Dashboard</a>
+</div>
+</body>
+</html>
